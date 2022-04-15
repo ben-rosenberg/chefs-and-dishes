@@ -1,0 +1,51 @@
+@model Dish
+@{
+    ViewData["Title"] = "Add Dish";
+}
+
+<h1 class="text-center">Add Dish</h1>
+<div class="card">
+    <div class="card-body">
+        <form class="rounded p-3" asp-controller="Dish" asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <span class="text-danger" asp-validation-for="Name"></span>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="ChefId"></label>
+                <span class="text-danger" asp-validation-for="ChefId"></span>
+                <select asp-for="ChefId" class="form-control">
+                    @foreach (var chef in ViewBag.Chefs)
+                    {
+                        <option value="@chef.ChefId">@chef.FirstName @chef.LastName</option>
+                    }
+                </select>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="form-group">
+                    <label asp-for="Calories"></label>
+                    <span class="text-danger" asp-validation-for="Calories"></span>
+                    <input asp-for="Calories" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tastiness"></label>
+                    <span class="text-danger" asp-validation-for="Tastiness"></span>
+                    <select asp-for="Tastiness" class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <span class="text-danger" asp-validation-for="Description"></span>
+                <textarea rows="10" class="form-control" asp-for="Description"></textarea>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-sm btn-outline-primary">
+        </form>
+    </div>
+</div>

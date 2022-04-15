@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Chefs";
+}
+
+@model List<Chef>
+
+<h1 class="text-center">Our Chefs</h1>
+<div class="card">
+    <div class="card-body">
+        <h3>Chefs</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            @foreach (Chef chef in Model)
+            {
+                TimeSpan ageSpan = DateTime.Now - chef.DateOfBirth;
+                int age = (int)Math.Floor(ageSpan.TotalDays / 365);
+                <tr>
+                    <td>@chef.FirstName @chef.LastName</td>
+                    <td>@age</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
